@@ -17,20 +17,5 @@
 
     <div class="container">
         @include('sweetalert::alert')
-
-        <div class="card card-custom bg-white border-white elevation-5">
-            <div class="card-custom-img">
-                <img src=" {{ asset('storage/header.png') }} " class="img-fluid" alt="">
-            </div>
-            <div class="card-custom-avatar">
-
-            </div>
-            <div class="card-body" style="overflow-y: auto">
-                @livewire('show-almacen')
-            </div>
-            <div class="card-footer" style="background: inherit; border-color: inherit;">
-
-            </div>
-        </div>
-    </div>
+            @livewire('show-almacen')
 @stop

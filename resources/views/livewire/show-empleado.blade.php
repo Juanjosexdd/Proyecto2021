@@ -1,6 +1,6 @@
 <div>
-    <div class="card uppercase" bis_skin_checked="1">
-        <div class="card-header" style="padding: .75rem .25rem" bis_skin_checked="1">
+    <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem">
+        <div class="card-header" style="padding: .75rem .25rem">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -10,7 +10,7 @@
             </div>
         </div>
         <!-- /.card-header -->
-        <div class="card-body p-0" bis_skin_checked="1">
+        <div class="card-body p-0">
         @if ($empleados->count())
             <table class="table table-striped">
                 <thead>
@@ -123,45 +123,7 @@
             </div>
         @endif
         </div>
-        <!-- /.card-body -->
     </div>
-
-    <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Informacion de {{$empleado->nombres}}</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <!--<tr>
-                    <p> <strong>Documento: </strong> {{$empleado->tipodocumento->abreviado}}-{{$empleado->cedula}}</p>
-                    <p> <strong>Nombre : </strong> {{$empleado->nombres}} {{$empleado->apellidos}}</p>
-                    <p> <strong>Correo : </strong> {{$empleado->email}}</p>
-                    <p> <strong>Dirección : </strong> {{$empleado->direccion}}</p>
-                    <p> <strong>Celular : </strong> {{$empleado->celular}}</p>
-                    <p> <strong>Telefono : </strong> {{$empleado->telefono}}</p>
-                    <p> <strong>Cargo:  </strong> {{$empleado->cargo->nombre}}</p>
-                    <p> <strong>Departamento:  </strong> {{$empleado->departamento->nombre}}</p>
-                    <p> <strong>Fecha de registro:  </strong> {{$empleado->created_at->diffForHumans()}}</p>
-                    <p> <strong>Observación :  </strong> {{$empleado->observacion}}</p>
-                </tr> -->
-                {!! Form::model($empleado ,['route' => ['admin.empleados.update', $empleado],'method' => 'PUT', 'autocomplete' => 'off']) !!}
-                @include('admin.empleados.partials.form')
-                {!! Form::submit('Guardar usuario', ['class' => 'btn btn-outline-primary btn-block']) !!}
-
-            {!! Form::close() !!}
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
     
 </div>
 @section('css')

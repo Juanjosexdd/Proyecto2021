@@ -1,6 +1,6 @@
 <div>
-    <div class="card uppercase" bis_skin_checked="1">
-        <div class="card-header" style="padding: .75rem .25rem" bis_skin_checked="1">
+    <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem">
+        <div class="card-header" style="padding: .75rem .25rem">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -10,7 +10,7 @@
             </div>
         </div>
         <!-- /.card-header -->
-        <div class="card-body p-0" bis_skin_checked="1">
+        <div class="card-body p-0">
         @if ($ciudads->count())
             <table class="table table-striped">
                 <thead>

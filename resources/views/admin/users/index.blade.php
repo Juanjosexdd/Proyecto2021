@@ -3,7 +3,14 @@
 @section('title', 'ENASA | USUARIOS')
 
 @section('content_header')
-    <h1 class="text-blue">LISTA DE USUARIOS</h1>
+<div class="container">
+
+    <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem">
+        <div class="card-body table-responsive p-0">
+            <h1 class="text-blue">LISTA DE USUARIOS</h1>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('css')

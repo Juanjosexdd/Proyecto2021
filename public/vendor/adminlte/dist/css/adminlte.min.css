@@ -4784,7 +4784,7 @@ input[type="button"].btn-block {
   background-color: #ffffff;
   background-clip: border-box;
   border: 0 solid rgba(0, 0, 0, 50%);
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
 }
 
 .card > hr {
@@ -18731,7 +18731,7 @@ html.maximized-card {
 
 .btn-default {
   background-color: #f8f9fa;
-  border-color: #ddd;
+  border-color: rgb(65, 63, 63);
   color: #444;
 }
 
