@@ -7,10 +7,10 @@
 @stop
 
 @section('content')
-
-@include('sweetalert::alert')
-
-            @livewire('show-estado')
+<div class="container">
+    @include('sweetalert::alert')
+    @livewire('show-estado')
+</div>
 @stop
 @section('js')
 @stop

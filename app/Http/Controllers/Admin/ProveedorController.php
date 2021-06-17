@@ -41,7 +41,7 @@ class ProveedorController extends Controller
      */
     public function store(ProveedorRequest $request)
     {
-
+        //return $request;
         $proveedor = Proveedor::create($request->all());
 
         return redirect()->route('admin.proveedors.edit', $proveedor)->with('success', ' ¡Felicidades el proveedor se creo con éxito!');
@@ -105,5 +105,22 @@ class ProveedorController extends Controller
     public function destroy(Proveedor $proveedor)
     {
         //
+    }
+
+    public function estatuproveedor(Proveedor $proveedor)
+    {
+        if($proveedor->estatus=="1"){
+
+            $proveedor->estatus= '0';
+            $proveedor->save();
+            return redirect()->route('admin.proveedors.index')->with('success', 'El usuario està inactivo con éxito!');
+
+       }else{
+
+            $proveedor->estatus= '1';
+            $proveedor->save();
+            return redirect()->route('admin.proveedors.index')->with('success', 'El usuario se activó con éxito!');
+
+        }
     }
 }

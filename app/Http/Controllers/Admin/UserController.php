@@ -114,11 +114,23 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        $departamentos = Departamento::pluck('nombre','id');
+        $tipodocumentos = Tipodocumento::pluck('abreviado','id');
+        $cargos = Cargo::pluck('nombre','id');
+        $roles = Role::all();
+
+         return view('admin.users.show', compact('departamentos','tipodocumentos','cargos','roles','user'));
+
+    }
+
+
+    public function UpdateStatus(User $user)
+    {
         if($user->estatus=="1"){
 
             $user->estatus= '0';
             $user->save();
-            return redirect()->route('admin.users.index')->with('success', 'El usuario està inactivo con éxito!');
+            return redirect()->route('admin.users.index')->with('success', 'El usuario está inactivo con éxito!');
 
        }else{
 

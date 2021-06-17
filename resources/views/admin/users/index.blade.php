@@ -3,122 +3,49 @@
 @section('title', 'ENASA | USUARIOS')
 
 @section('content_header')
-<div class="container">
 
-    <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem">
-        <div class="card-body table-responsive p-0">
-            <h1 class="text-blue">LISTA DE USUARIOS</h1>
+    <div class="container m-3">
+        <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
+            <div class="card-body">
+                <h3 class="text-blue">Lista de usuarios</h3>
+            </div>
         </div>
     </div>
-</div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href=" {{asset('vendor/cards.css')}} ">
-    <link rel="stylesheet" href=" {{asset('vendor/datatable/css/bootstrap.css')}} ">
-    <link rel="stylesheet" href=" {{asset('vendor/datatable/css/dataTables.bootstrap4.min.css')}} ">
-    <link rel="stylesheet" href=" {{asset('vendor/datatable/css/responsive.bootstrap4.min.css')}} ">
-    
+    <link rel="stylesheet" href=" {{ asset('vendor/cards.css') }} ">
+
 @stop
 @section('content')
-@include('sweetalert::alert')
 
-<div class="container">
-    @livewire('show-user')
-    {{-- <div class="card card-custom bg-white border-white border-0 elevation-5">
-        <div class="card-custom-img">
-            <img src=" {{asset('storage/header.png')}} " class="img-fluid" alt="">
-            <a href="{{route('admin.users.create')}}" class="btn bg-navy float-right mt-2 mb-4 btn-sm px-2 mr-3 elevation-4"><i class="fas fa-plus mt-2 px-3"></i></a>
-        </div>
-        <div class="card-custom-avatar">
-            
-        </div>
+    @include('sweetalert::alert')
 
-        <div class="card-body mt-5" style="overflow-y: auto">
-            <table class="table table-striped dt-responsive nowrap" id="datatable">
-                <thead>
-                    <tr>
-                        <th>Cedula</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        <th>Estatus</th>
-                        <th>Cargo</th>
-                        <th>Departamento</th>
-                        <th>Registro</th>
-                        <th colspan="2">Actions</th>
+    <div class="container">
+        @livewire('show-user')
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user )
-                        <tr>
-                            <td>{{$user->tipodocumento->abreviado}}-{{$user->cedula}} </td>
-                            <td>{{$user->name}} {{$user->last_name}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->phone}}</td>
-                            <td>
-                                @if ($user->estatus == 1)
-                                    <span class="badge badge-success">Áctivo</span>
-                                @else
-                                    <span class="badge badge-success">Ináctivo</span>
-                                @endif
-                            </td>
-                            <td>{{$user->cargo->nombre}}</td>
-                            <td>{{$user->departamento->nombre}}</td>
-                            <td>{{$user->created_at->diffForHumans()}}</td>
-                            <td width="8px">
-                                <a class="btn btn-outline-info btn-sm mr-1 elevation-4" href=" {{route('admin.users.edit',$user)}} "><i class="fas fa-edit"></i></a>
-                            </td>
-                            <td width="8px">
-                                <form action="{{route('admin.users.destroy', $user)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm elevation-4"><i class="fas fa-trash"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div class="card-footer" style="background: inherit; border-color: inherit;">
+    </div>
+@stop
 
-        </div>
-    </div> --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href=" {{ asset('vendor/cards.css') }} ">
 
-</div>
 @stop
 
 @section('js')
-    <script src=" {{asset('vendor/sweetalert-eliminar.js')}} "></script>
-    <script src=" {{asset('vendor/datatable/js/jquery-3.5.1.js')}} "></script>
-    <script src=" {{asset('vendor/datatable/js/jquery.dataTables.min.js')}} "></script>
-    <script src=" {{asset('vendor/datatable/js/dataTables.bootstrap4.min.js')}} "></script>
-    <script src=" {{asset('vendor/datatable/js/dataTables.responsive.min.js')}} "></script>
-    <script src=" {{asset('vendor/datatable/js/responsive.bootstrap4.min.js')}} "></script>
+    <script src=" {{ asset('vendor/sweetalert2.js') }}  "></script>
+    <script src=" {{ asset('vendor/sweetalert-eliminar.js') }} "></script>
+    <script src=" {{ asset('vendor/sweetalert-estatus.js') }} "></script>
+    <script src=" {{ asset('vendor/sweetalert-estatus2.js') }} "></script>
+    <script src=" {{ asset('vendor/popper.min.js') }} "></script>
 
     <script>
-        // $(document).ready(function() {
-        //     $('#datatable').DataTable( {
-        //         responsive: true,
-        //         autoWidth: false,
-        //         "language": {
-        //             "lengthMenu": "Mostrar _MENU_ registros por paginas",
-        //             "zeroRecords": "No existe ninguna coincidencia",
-        //             "info": "Mostrando la pagina _PAGE_ de _PAGES_",
-        //             "infoEmpty": "No hay registros disponibles",
-        //             "infoFiltered": "(filtrado _MAX_ registros totales)",
-        //             'search': "Buscar: ",
-        //             'paginate': {
-        //                 'next': 'Siguiente',
-        //                 'previous': 'Anterior'
-        //             },
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
 
-        //         },
-                
-        //     });
-        // } );
     </script>
-@stop
 
+@stop

@@ -65,4 +65,21 @@ class EstadoController extends Controller
 
         return redirect()->route('admin.estados.index')->with('success', '¡Felicidades el estado se Eliminó con éxito!');;
     }
+
+    public function estatuestado(Estado $estado)
+    {
+        if($estado->estatus=="1"){
+
+            $estado->estatus= '0';
+            $estado->save();
+            return redirect()->route('admin.estados.index')->with('success', 'El usuario està inactivo con éxito!');
+
+       }else{
+
+            $estado->estatus= '1';
+            $estado->save();
+            return redirect()->route('admin.estados.index')->with('success', 'El usuario se activó con éxito!');
+
+        }
+    }
 }

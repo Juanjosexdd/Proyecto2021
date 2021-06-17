@@ -114,4 +114,21 @@ class EmpleadoController extends Controller
     {
         //
     }
+
+    public function estatuempleado(Empleado $empleado)
+    {
+        if($empleado->estatus=="1"){
+
+            $empleado->estatus= '0';
+            $empleado->save();
+            return redirect()->route('admin.empleados.index')->with('success', 'El trabajador está inactivo con éxito!');
+
+        }else{
+
+            $empleado->estatus= '1';
+            $empleado->save();
+            return redirect()->route('admin.empleados.index')->with('success', 'El trabajador se activó con éxito!');
+
+        }
+    }
 }

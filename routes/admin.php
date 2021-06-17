@@ -30,3 +30,9 @@ Route::resource('productos', ProductoController::class)->names('admin.productos'
 Route::resource('proveedors', ProveedorController::class)->names('admin.proveedors');
 Route::resource('ingresos', IngresoController::class)->names('admin.ingresos');
 
+
+Route::get('UpdateStatus/{user}', [UserController::class, 'UpdateStatus'])->name('admin.users.UpdateStatus');
+Route::get('estatuestado/{estado}', [EstadoController::class, 'estatuestado'])->name('admin.estados.estatuestado');
+Route::get('estatuproveedor/{proveedor}', [ProveedorController::class, 'estatuproveedor'])->name('admin.proveedors.estatuproveedor');
+Route::get('estatuempleado/{empleado}', [EmpleadoController::class, 'estatuempleado'])->name('admin.empleados.estatuempleado');
+

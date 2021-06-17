@@ -4,8 +4,8 @@
 
 @section('content_header')
     <div class="container">
-        <div class="card card-custom bg-white border-white border-0 elevation-5">
-            <div class="card-body" style="overflow-y: auto">
+        <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
+            <div class="card-body">
                 <h1 class="text-blue">LISTA DE ALMACEN</h1>
             </div>
         </div>

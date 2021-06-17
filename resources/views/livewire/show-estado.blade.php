@@ -1,16 +1,16 @@
-<div>
-    <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem">
-        <div class="card-header" style="padding: .75rem .25rem">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                <input wire:model="search" type="email" class="form-control mr-2" placeholder="Buscar">
-                <a href="{{route('admin.estados.create')}}" class="btn bg-navy btn-sm px-2 elevation-4"><i class="fas fa-plus mt-2 px-3"></i></a>
+<div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem">
+    <div class="card-header" style="padding: .75rem .25rem">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
             </div>
+            <input wire:model="search" type="email" class="form-control mr-2" placeholder="Buscar">
+            <a href="{{ route('admin.estados.create') }}" class="btn bg-navy btn-sm px-2 elevation-4"><i
+                    class="fas fa-plus mt-2 px-3"></i></a>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body p-0">
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
         @if ($estados->count())
             <table class="table table-striped">
                 <thead>
@@ -26,7 +26,7 @@
                             @else
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
-                            
+
                         </th>
                         <th scope="col" role="button" wire:click="order('nombre')">
                             nombre
@@ -47,31 +47,53 @@
                 <tbody>
                     @foreach ($estados as $estado)
                         <tr>
-                            <td>{{$estado->id}}</td>
-                            <td>{{$estado->nombre}}</td>
-
-                            <td> 
+                            <td>{{ $estado->id }}</td>
+                            <td>{{ $estado->nombre }}</td>
+                            <td>
                                 @if ($estado->estatus == 1)
                                     <span class="badge badge-success">Activo</span>
                                 @else
-                                    <span class="badge badge-danger">Inactivo <i class="fad fa-user-times"></i></span>
+                                    <span class="badge badge-danger">Inactivo</span>
                                 @endif
                             </td>
-                            <td width="8px">
-                                <a class="btn btn-outline-info btn-sm mr-1 elevation-4" href=" {{route('admin.estados.edit',$estado)}} "><i class="fas fa-edit"></i></a>
+
+                            <td>
+                            <td width="4px">
+                                <div class="btn-group" style="border-color: #ddd">
+                                    <a type="button" class="btn btn-default btn-sm"
+                                        style="border-color: rgb(158, 157, 157)">
+                                        @if ($estado->estatus == 1)
+                                            <form class="formulario-estatus"
+                                                action="{{ route('admin.estados.estatuestado', $estado) }}" method="get">
+                                                @csrf
+                                                <button type="submit" class="btn btn-default btn-sm p-0"><i
+                                                        class="fas fa-user-check text-success"></i></button>
+                                            </form>
+                                        @else
+                                            <form class="formulario-estatus2"
+                                                action="{{ route('admin.estados.estatuestado', $estado) }}" method="get">
+                                                @csrf
+                                                <button type="submit" class="btn btn-default text-danger btn-sm p-0"><i
+                                                        class="fas fa-user-times"></i></button>
+                                            </form>
+                                        @endif
+                                    </a>
+                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157)"
+                                        href=" {{ route('admin.estados.edit', $estado) }} "><i
+                                            class="fas fa-edit text-blue"></i></a>
+                                    <a type="button" class="btn btn-default btn-sm"
+                                        style="border-color: rgb(158, 157, 157)">
+                                        <form class="formulario-eliminar"
+                                            action="{{ route('admin.estados.destroy', $estado) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-default btn-sm p-0 text-danger"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </form>
+                                    </a>
+                                </div>
+
                             </td>
-                            <td width="8px">
-                                {{-- <a href="#" onclick="deleteConfirm('delele-product-form-39')"><i class="fas fa-trash"></i></a>
-                                <form id="delete-product-form-39" action="{{route('admin.estados.destroy', $estado)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                </form> --}}
-                                <form class="formulario-eliminar" action="{{route('admin.estados.destroy', $estado)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" id="delete-product-form-39" class="btn btn-outline-danger btn-sm elevation-4"><i class="fas fa-trash"></i></button>
-                                </form>
-                                
                             </td>
                         </tr>
                     @endforeach
@@ -85,20 +107,16 @@
                 No existe ninguna coincidencia
             </div>
         @endif
-        </div>
-        <!-- /.card-body -->
     </div>
-
-
-    
+    <!-- /.card-body -->
 </div>
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-4.min.css') }}">
-    <link rel="stylesheet" href=" {{ asset('vendor/cards.css')}} ">
+    <link rel="stylesheet" href=" {{ asset('vendor/cards.css') }} ">
 @stop
 @section('js')
-    <script src="{{asset('vendor/sweetalert2.js')}}  "></script>
-    <script src=" {{asset('vendor/sweetalert-eliminar.js')}} "></script>
-    <script src=" {{asset('vendor/sweetalert-estatus.js')}} "></script>
+    <script src="{{ asset('vendor/sweetalert2.js') }}  "></script>
+    <script src=" {{ asset('vendor/sweetalert-eliminar.js') }} "></script>
+    <script src=" {{ asset('vendor/sweetalert-estatus.js') }} "></script>
 @stop

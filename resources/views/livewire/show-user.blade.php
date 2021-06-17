@@ -41,7 +41,7 @@
                             @endif
                         </th>
                         <th scope="col" role="button" wire:click="order('cedula')">
-                            Identificacion
+                            Cedula
                             @if ($sort == 'cedula')
                                 @if ($direction == 'asc')
                                     <i class="fas fa-sort-numeric-up-alt float-right mt-1"></i>
@@ -77,51 +77,59 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                         </th>
+                        <th>Estatus</th>
                         <th colspan="3"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            {{-- <td>{{$user->id}}</td> --}}
-
-                            <td> <img class="img-size-32 img-circle image elevation-2"
+                            <td> <img class="img-size-32  img-circle image elevation-2"
                                     src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
                                 {{ $user->name }} {{ $user->last_name }}</td>
                             <td>{{ $user->tipodocumento->abreviado }}-{{ $user->cedula }} </td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->cargo->nombre }}</td>
-
+                            <td>
+                                @if ($user->estatus == 1)
+                                    <span class="badge badge-success">Activo</span>
+                                @else
+                                    <span class="badge badge-danger">Inactivo</span>
+                                @endif
+                            </td>
                             <td width="4px">
-                                <div class="btn-group" style="border-color: #ddd">
+                                <div class="btn-group">
                                     <a type="button" class="btn btn-default btn-sm"
                                         style="border-color: rgb(158, 157, 157)">
                                         @if ($user->estatus == 1)
                                             <form class="formulario-estatus"
-                                                action="{{ route('admin.users.show', $user) }}" method="get">
+                                                action="{{ route('admin.users.UpdateStatus', $user) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default btn-sm p-0"><i
-                                                        class="fas fa-user-check text-yellow"></i></button>
+                                                <button type="submit" class="btn btn-default border-0 btn-sm p-0"><i
+                                                        class="fas fa-user-check text-success"></i></button>
                                             </form>
                                         @else
-                                            <form class="formulario-estatus"
-                                                action="{{ route('admin.users.show', $user) }}" method="get">
+                                            <form class="formulario-estatus2"
+                                                action="{{ route('admin.users.UpdateStatus', $user) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default text-danger btn-sm p-0"><i
+                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0"><i
                                                         class="fas fa-user-times"></i></button>
                                             </form>
                                         @endif
                                     </a>
-                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157)"
+                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
                                         href=" {{ route('admin.users.edit', $user) }} "><i
                                             class="fas fa-edit text-blue"></i></a>
+                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
+                                        href=" {{ route('admin.users.show', $user) }} "><i
+                                            class="fas fa-eye text-yellow"></i></a>
                                     <a type="button" class="btn btn-default btn-sm"
-                                        style="border-color: rgb(158, 157, 157)">
+                                        style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
                                         <form class="formulario-eliminar"
                                             action="{{ route('admin.users.destroy', $user) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-default btn-sm p-0 text-danger"><i
+                                            <button type="submit" class="btn btn-default btn-sm border-0 p-0 text-danger"><i
                                                     class="fas fa-trash"></i></button>
                                         </form>
                                     </a>
@@ -142,15 +150,4 @@
         @endif
     </div>
 </div>
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-4.min.css') }}">
-    <link rel="stylesheet" href=" {{ asset('vendor/cards.css') }} ">
 
-@stop
-
-@section('js')
-    <script src="{{ asset('vendor/sweetalert2.js') }}  "></script>
-    <script src=" {{ asset('vendor/sweetalert-eliminar.js') }} "></script>
-    <script src=" {{ asset('vendor/sweetalert-estatus.js') }} "></script>
-@stop
