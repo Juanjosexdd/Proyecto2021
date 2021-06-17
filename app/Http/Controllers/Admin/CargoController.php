@@ -84,4 +84,21 @@ class CargoController extends Controller
 
         return redirect()->route('admin.cargos.index')->with('success', ' ¡Felicidades el cargo se eliminó con éxito!');
     }
+
+    public function estatucargo(Cargo $cargo)
+    {
+        if($cargo->estatus=="1"){
+
+            $cargo->estatus= '0';
+            $cargo->save();
+            return redirect()->route('admin.cargos.index')->with('success', 'El cargo se inactivo con éxito!');
+
+       }else{
+
+            $cargo->estatus= '1';
+            $cargo->save();
+            return redirect()->route('admin.cargos.index')->with('success', 'El cargo se activó con éxito!');
+
+        }
+    }
 }

@@ -1,18 +1,18 @@
-<div>
-    <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem">
-        <div class="card-header" style="padding: .75rem .25rem">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                <input wire:model="search" type="email" class="form-control mr-2" placeholder="Buscar">
-                <a href="{{route('admin.cargos.create')}}" class="btn bg-navy btn-sm px-2 elevation-4"><i class="fas fa-plus mt-2 px-3"></i></a>
+<div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem">
+    <div class="card-header" style="padding: .75rem .25rem">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
             </div>
+            <input wire:model="search" type="text" class="form-control mr-2" placeholder="Buscar">
+            <a href="{{ route('admin.cargos.create') }}" class="btn bg-navy btn-sm px-2 elevation-4"><i
+                    class="fas fa-plus mt-2 px-3"></i></a>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body p-0">
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0">
         @if ($cargos->count())
-            <table class="table table-striped">
+            <table class="table table-striped table-hover text-nowrap">
                 <thead>
                     <tr>
                         <th scope="col" role="button" wire:click="order('id')">
@@ -61,28 +61,49 @@
                             <td>{{$cargo->id}}</td>
                             <td>{{$cargo->nombre}}</td>
                             <td>{{$cargo->descripcion}}</td>
-                            <td width="4px"> 
+
+                            <td> 
                                 @if ($cargo->estatus == 1)
-                                    <form class="formulario-estatus" action="{{route('admin.cargos.show', $cargo)}}" method="get">
-                                        @csrf
-                                        <button type="submit" class="btn btn-outline-success btn-sm elevation-4"><i class="fas fa-user-check"></i></button>
-                                    </form>
+                                    <span class="badge badge-success">Activo</span>
                                 @else
-                                <form class="formulario-estatus" action="{{route('admin.cargos.show', $cargo)}}" method="get">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-danger btn-sm elevation-4"><i class="fas fa-user-times"></i></button>
-                                </form>
+                                    <span class="badge badge-danger">Inactivo <i class="fad fa-user-times"></i></span>
                                 @endif
                             </td>
                             <td width="4px">
-                                <a class="btn btn-outline-info btn-sm mr-1 elevation-4" href=" {{route('admin.cargos.edit',$cargo)}} "><i class="fas fa-edit"></i></a>
-                            </td>
-                            <td width="4px">
-                                <form class="formulario-eliminar" action="{{route('admin.cargos.destroy', $cargo)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm elevation-4"><i class="fas fa-trash"></i></button>
-                                </form>
+                                <div class="btn-group">
+                                    <a type="button" class="btn btn-default btn-sm"
+                                        style="border-color: rgb(158, 157, 157)">
+                                        @if ($cargo->estatus == 1)
+                                            <form class="formulario-estatus"
+                                                action="{{ route('admin.cargos.estatucargo', $cargo) }}" method="get">
+                                                @csrf
+                                                <button type="submit" class="btn btn-default border-0 btn-sm p-0"><i
+                                                        class="fas fa-user-check text-success"></i></button>
+                                            </form>
+                                        @else
+                                            <form class="formulario-estatus2"
+                                                action="{{ route('admin.cargos.estatucargo', $cargo) }}" method="get">
+                                                @csrf
+                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0"><i
+                                                        class="fas fa-user-times"></i></button>
+                                            </form>
+                                        @endif
+                                    </a>
+                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
+                                        href=" {{ route('admin.cargos.edit', $cargo) }} "><i
+                                            class="fas fa-edit text-blue"></i></a>
+                                    <a type="button" class="btn btn-default btn-sm"
+                                        style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
+                                        <form class="formulario-eliminar"
+                                            action="{{ route('admin.cargos.destroy', $cargo) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-default btn-sm border-0 p-0 text-danger"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </form>
+                                    </a>
+                                </div>
+
                             </td>
                         </tr>
                     @endforeach
@@ -96,21 +117,6 @@
                 No existe ninguna coincidencia
             </div>
         @endif
-        </div>
-        <!-- /.card-body -->
     </div>
-
-
-    
 </div>
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-4.min.css') }}">
-    <link rel="stylesheet" href=" {{ asset('vendor/cards.css')}} "> 
-@stop
 
-@section('js')
-    <script src="{{asset('vendor/sweetalert2.js')}}  "></script>
-    <script src=" {{asset('vendor/sweetalert-eliminar.js')}} "></script>
-    <script src=" {{asset('vendor/sweetalert-estatus.js')}} "></script>
-@stop

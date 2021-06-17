@@ -111,4 +111,22 @@ class ClacificacionController extends Controller
 
         return redirect()->route('admin.clacificacions.index')->with('success', 'El clacificacion se eliminó con exito!');
     }
+
+
+    public function estatuclacificacion(Clacificacion $clacificacion)
+    {
+        if($clacificacion->estatus=="1"){
+
+            $clacificacion->estatus= '0';
+            $clacificacion->save();
+            return redirect()->route('admin.clacificacions.index')->with('success', 'La clacificacion se inactivo con éxito!');
+
+       }else{
+
+            $clacificacion->estatus= '1';
+            $clacificacion->save();
+            return redirect()->route('admin.clacificacions.index')->with('success', 'La clacificacion se activó con éxito!');
+
+        }
+    }
 }

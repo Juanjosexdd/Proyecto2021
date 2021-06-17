@@ -33,6 +33,10 @@
 
     </div>
 @stop
+@section('footer')
+<h5 class="text-center"><a href="https://github.com/Juanjosexdd/proyecto2021"  target="_blank">
+    ENASA - UPTP "JJ MONTILLA"</a></h5>
+@stop
 
 @section('css')
 <link rel="stylesheet" href="{{asset('vendor/cards.css')}}">

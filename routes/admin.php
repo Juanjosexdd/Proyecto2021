@@ -35,4 +35,8 @@ Route::get('UpdateStatus/{user}', [UserController::class, 'UpdateStatus'])->name
 Route::get('estatuestado/{estado}', [EstadoController::class, 'estatuestado'])->name('admin.estados.estatuestado');
 Route::get('estatuproveedor/{proveedor}', [ProveedorController::class, 'estatuproveedor'])->name('admin.proveedors.estatuproveedor');
 Route::get('estatuempleado/{empleado}', [EmpleadoController::class, 'estatuempleado'])->name('admin.empleados.estatuempleado');
+Route::get('estatuciudad/{ciudad}', [CiudadController::class, 'estatuciudad'])->name('admin.ciudads.estatuciudad');
+Route::get('estatucargo/{cargo}', [CargoController::class, 'estatucargo'])->name('admin.cargos.estatucargo');
+Route::get('estatudepartamento/{departamento}', [DepartamentoController::class, 'estatudepartamento'])->name('admin.departamentos.estatudepartamento');
+Route::get('estatuclacificacion/{clacificacion}', [ClacificacionController::class, 'estatuclacificacion'])->name('admin.clacificacions.estatuclacificacion');
 

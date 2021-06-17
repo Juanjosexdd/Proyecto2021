@@ -21,7 +21,9 @@ class CiudadController extends Controller
     public function index()
     {
 
-        return view ('admin.ciudads.index');
+        $ciudads = Ciudad::with('estado')->get();
+
+        return view ('admin.ciudads.index', compact('ciudads'));
     }
 
     public function create()
@@ -71,5 +73,22 @@ class CiudadController extends Controller
         $ciudad->delete();
 
         return redirect()->route('admin.ciudads.index')->with('info', 'El ciudad se eliminó con exito...');
+    }
+
+    public function estatuciudad(Ciudad $ciudad)
+    {
+        if($ciudad->estatus=="1"){
+
+            $ciudad->estatus= '0';
+            $ciudad->save();
+            return redirect()->route('admin.ciudads.index')->with('success', 'El municipio se inactivo con éxito!');
+
+       }else{
+
+            $ciudad->estatus= '1';
+            $ciudad->save();
+            return redirect()->route('admin.ciudads.index')->with('success', 'El municipio se activó con éxito!');
+
+        }
     }
 }

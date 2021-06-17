@@ -11,3 +11,7 @@
             @livewire('show-producto')
 @stop
 
+@section('footer')
+<h5 class="text-center"><a href="https://github.com/Juanjosexdd/proyecto2021"  target="_blank">
+    ENASA - UPTP "JJ MONTILLA"</a></h5>
+@stop

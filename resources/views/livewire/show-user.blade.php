@@ -4,7 +4,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-search"></i></span>
             </div>
-            <input wire:model="search" type="email" class="form-control mr-2" placeholder="Buscar">
+            <input wire:model="search" type="text" class="form-control mr-2" placeholder="Buscar">
             <a href="{{ route('admin.users.create') }}" class="btn bg-navy btn-sm px-2 elevation-4"><i
                     class="fas fa-plus mt-2 px-3"></i></a>
         </div>
@@ -15,19 +15,6 @@
             <table class="table table-striped table-hover text-nowrap">
                 <thead>
                     <tr>
-                        {{-- <th scope="col" role="button" wire:click="order('id')">
-                            ID
-                            @if ($sort == 'id')
-                                @if ($direction == 'asc')
-                                    <i class="fas fas fa-sort-amount-down-alt float-right mt-1"></i>
-                                @else
-                                    <i class="fas fa-sort-amount-down float-right mt-1"></i>
-                                @endif
-                            @else
-                                <i class="fas fa-sort float-right mt-1"></i>
-                            @endif
-                            
-                        </th> --}}
                         <th scope="col" role="button" wire:click="order('name')">
                             Nombres
                             @if ($sort == 'name')

@@ -17,9 +17,10 @@ class Estado extends Model
         return "slug";
     }
 
-    public function ciudads()
+    public function ciudad()
     {
         return $this->hasMany(Ciudad::class);
+    
     }
 
 

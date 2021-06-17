@@ -72,13 +72,13 @@ class EstadoController extends Controller
 
             $estado->estatus= '0';
             $estado->save();
-            return redirect()->route('admin.estados.index')->with('success', 'El usuario està inactivo con éxito!');
+            return redirect()->route('admin.estados.index')->with('success', 'El estado se inactivo con éxito!');
 
        }else{
 
             $estado->estatus= '1';
             $estado->save();
-            return redirect()->route('admin.estados.index')->with('success', 'El usuario se activó con éxito!');
+            return redirect()->route('admin.estados.index')->with('success', 'El estado se activó con éxito!');
 
         }
     }

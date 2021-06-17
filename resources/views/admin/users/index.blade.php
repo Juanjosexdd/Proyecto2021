@@ -13,10 +13,6 @@
     </div>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href=" {{ asset('vendor/cards.css') }} ">
-
-@stop
 @section('content')
 
     @include('sweetalert::alert')
@@ -27,10 +23,14 @@
     </div>
 @stop
 
+@section('footer')
+<h5 class="text-center"><a href="https://github.com/Juanjosexdd/proyecto2021"  target="_blank">
+    ENASA - UPTP "JJ MONTILLA"</a></h5>
+@stop
+
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-4.min.css') }}">
-    <link rel="stylesheet" href=" {{ asset('vendor/cards.css') }} ">
 
 @stop
 

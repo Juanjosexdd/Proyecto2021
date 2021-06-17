@@ -78,4 +78,21 @@ class DepartamentoController extends Controller
 
         return redirect()->route('admin.departamentos.index')->with('success', 'El departamento se eliminó con exito...');
     }
+
+    public function estatudepartamento(Departamento $departamento)
+    {
+        if($departamento->estatus=="1"){
+
+            $departamento->estatus= '0';
+            $departamento->save();
+            return redirect()->route('admin.departamentos.index')->with('success', 'El de departamento se inactivo con éxito!');
+
+       }else{
+
+            $departamento->estatus= '1';
+            $departamento->save();
+            return redirect()->route('admin.departamentos.index')->with('success', 'El de departamento se activó con éxito!');
+
+        }
+    }
 }
