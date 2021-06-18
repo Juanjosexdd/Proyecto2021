@@ -6,20 +6,16 @@
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
 @stop
 
-@section('content_header')
+@section('content')
+    @include('sweetalert::alert')
 
-    <div class="container m-3">
+    <div class="container">
         <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
             <div class="card-body">
                 <h3 class="text-blue">Lista de estados</h3>
             </div>
         </div>
     </div>
-@stop
-
-@section('content')
-
-    @include('sweetalert::alert')
 
     <div class="container">
         @livewire('show-estado')

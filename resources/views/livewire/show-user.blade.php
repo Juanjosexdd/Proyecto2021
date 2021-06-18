@@ -76,7 +76,7 @@
                                 {{ $user->name }} {{ $user->last_name }}</td>
                             <td>{{ $user->tipodocumento->abreviado }}-{{ $user->cedula }} </td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->cargo->nombre }}</td>
+                            <td>{{ Str::limit( $user->cargo->nombre, 20) }}</td>
                             <td>
                                 @if ($user->estatus == 1)
                                     <span class="badge badge-success">Activo</span>

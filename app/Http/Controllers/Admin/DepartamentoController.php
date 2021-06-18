@@ -50,7 +50,7 @@ class DepartamentoController extends Controller
 
         $departamento = Departamento::create($request->all());
 
-        return redirect()->route('admin.departamentos.edit', $departamento)->with('toast_success', 'Felicidades el departamento se creo con exito...');
+        return redirect()->route('admin.departamentos.edit', $departamento)->with('success', 'Felicidades el departamento se creo con exito...');
     }
 
     public function edit(Departamento $departamento)

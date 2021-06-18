@@ -16,7 +16,7 @@
                 <thead>
                     <tr>
                         <th scope="col" role="button" wire:click="order('id')">
-                            ID
+                            N
                             @if ($sort == 'id')
                                 @if ($direction == 'asc')
                                     <i class="fas fas fa-sort-amount-down-alt float-right mt-1"></i>
@@ -26,7 +26,7 @@
                             @else
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
-                            
+
                         </th>
                         <th scope="col" role="button" wire:click="order('nombre')">
                             nombre
@@ -52,21 +52,24 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                         </th>
+                        {{-- <th>Ingreso &nbsp;&nbsp;-&nbsp;&nbsp; Actualizado</th> --}}
+                        <th>Estatus</th>
                         <th colspan="3"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($cargos as $cargo)
                         <tr>
-                            <td>{{$cargo->id}}</td>
-                            <td>{{$cargo->nombre}}</td>
-                            <td>{{$cargo->descripcion}}</td>
-
-                            <td> 
+                            <td>{{ $cargo->id }}</td>
+                            <td>{{ $cargo->nombre }}</td>
+                            <td>{{ $cargo->descripcion }}</td>
+                            {{-- <td>{{Str::limit( $cargo->descripcion, 20) }}</td> --}}
+                            {{-- <td>{{ $cargo->created_at->toFormattedDateString()}} - {{ $cargo->updated_at->toFormattedDateString()}}</td> --}}
+                            <td>
                                 @if ($cargo->estatus == 1)
                                     <span class="badge badge-success">Activo</span>
                                 @else
-                                    <span class="badge badge-danger">Inactivo <i class="fad fa-user-times"></i></span>
+                                    <span class="badge badge-danger">Inactivo</span>
                                 @endif
                             </td>
                             <td width="4px">
@@ -77,19 +80,23 @@
                                             <form class="formulario-estatus"
                                                 action="{{ route('admin.cargos.estatucargo', $cargo) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default border-0 btn-sm p-0"><i
-                                                        class="fas fa-user-check text-success"></i></button>
+                                                <button type="submit" class="btn btn-default text-success border-0 btn-sm p-0">
+                                                    <i class="fas fa-check-circle"></i>
+                                                </button>
                                             </form>
                                         @else
                                             <form class="formulario-estatus2"
                                                 action="{{ route('admin.cargos.estatucargo', $cargo) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0"><i
-                                                        class="fas fa-user-times"></i></button>
+                                                <button type="submit"
+                                                    class="btn btn-default text-danger border-0 btn-sm p-0">
+                                                    <i class="fas fa-times-circle"></i>
+                                                </button>
                                             </form>
                                         @endif
                                     </a>
-                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
+                                    <a class="btn btn-default btn-sm"
+                                        style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
                                         href=" {{ route('admin.cargos.edit', $cargo) }} "><i
                                             class="fas fa-edit text-blue"></i></a>
                                     <a type="button" class="btn btn-default btn-sm"
@@ -98,7 +105,8 @@
                                             action="{{ route('admin.cargos.destroy', $cargo) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-default btn-sm border-0 p-0 text-danger"><i
+                                            <button type="submit"
+                                                class="btn btn-default btn-sm border-0 p-0 text-danger"><i
                                                     class="fas fa-trash"></i></button>
                                         </form>
                                     </a>
@@ -119,4 +127,3 @@
         @endif
     </div>
 </div>
-

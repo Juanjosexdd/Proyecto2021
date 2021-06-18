@@ -40,6 +40,7 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                         </th>
+                        <th>Ingreso &nbsp;&nbsp;-&nbsp;&nbsp; Actualizado</th>
                         <th>Estatus</th>
                         <th colspan="2"></th>
                     </tr>
@@ -49,12 +50,12 @@
                         <tr>
                             <td>{{$estado->id}}</td>
                             <td>{{$estado->nombre}}</td>
-
+                            <td>{{ $estado->created_at->toFormattedDateString()}} - {{ $estado->updated_at->toFormattedDateString()}}</td>
                             <td> 
                                 @if ($estado->estatus == 1)
                                     <span class="badge badge-success">Activo</span>
                                 @else
-                                    <span class="badge badge-danger">Inactivo <i class="fad fa-user-times"></i></span>
+                                    <span class="badge badge-danger">Inactivo</span>
                                 @endif
                             </td>
                             <td width="4px">
@@ -65,15 +66,17 @@
                                             <form class="formulario-estatus"
                                                 action="{{ route('admin.estados.estatuestado', $estado) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default border-0 btn-sm p-0"><i
-                                                        class="fas fa-user-check text-success"></i></button>
+                                                <button type="submit" class="btn btn-default text-success border-0 btn-sm p-0">
+                                                    <i class="fas fa-check-circle"></i>
+                                                </button>
                                             </form>
                                         @else
                                             <form class="formulario-estatus2"
                                                 action="{{ route('admin.estados.estatuestado', $estado) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0"><i
-                                                        class="fas fa-user-times"></i></button>
+                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0">
+                                                    <i class="fas fa-times-circle"></i>
+                                                </button>
                                             </form>
                                         @endif
                                     </a>

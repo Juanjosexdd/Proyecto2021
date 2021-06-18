@@ -10,12 +10,12 @@
         </div>
     </div>
     <!-- /.card-header -->
-    <div class="card-body table-responsive " bis_skin_checked="1">
+    <div class="card-body table-responsive">
         @if ($tipodocumentos->count())
             <table class="table table-striped table-hover text-nowrap">
                 <thead>
                     <tr>
-                        {{-- <th scope="col" role="button" wire:click="order('id')">
+                        <th scope="col" role="button" wire:click="order('id')">
                             ID
                             @if ($sort == 'id')
                                 @if ($direction == 'asc')
@@ -27,10 +27,10 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                             
-                        </th> --}}
-                        <th scope="col" role="button" wire:click="order('name')">
+                        </th>
+                        <th scope="col" role="button" wire:click="order('nombre')">
                             Nombres
-                            @if ($sort == 'name')
+                            @if ($sort == 'nombre')
                                 @if ($direction == 'asc')
                                     <i class="fas fas fa-sort-amount-down-alt float-right mt-1"></i>
                                 @else
@@ -40,9 +40,9 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                         </th>
-                        <th scope="col" role="button" wire:click="order('cedula')">
-                            Identificacion
-                            @if ($sort == 'cedula')
+                        <th scope="col" role="button" wire:click="order('abreviado')">
+                            Abreviacion
+                            @if ($sort == 'abreviado')
                                 @if ($direction == 'asc')
                                     <i class="fas fa-sort-numeric-up-alt float-right mt-1"></i>
                                 @else
@@ -52,31 +52,8 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                         </th>
-
-                        <th scope="col" role="button" wire:click="order('email')">
-                            Correo electronico
-                            @if ($sort == 'email')
-                                @if ($direction == 'asc')
-                                    <i class="fas fas fa-sort-amount-down-alt float-right mt-1"></i>
-                                @else
-                                    <i class="fas fa-sort-amount-down float-right mt-1"></i>
-                                @endif
-                            @else
-                                <i class="fas fa-sort float-right mt-1"></i>
-                            @endif
-                        </th>
-                        <th scope="col" role="button" wire:click="order('cargo_id')">
-                            Cargo
-                            @if ($sort == 'cargo_id')
-                                @if ($direction == 'asc')
-                                    <i class="fas fas fa-sort-amount-down-alt float-right mt-1"></i>
-                                @else
-                                    <i class="fas fa-sort-amount-down float-right mt-1"></i>
-                                @endif
-                            @else
-                                <i class="fas fa-sort float-right mt-1"></i>
-                            @endif
-                        </th>
+                        <th>Ingreso &nbsp;&nbsp;-&nbsp;&nbsp; Actualizado</th>
+                        <th>Estatus</th>
                         <th colspan="3"></th>
                     </tr>
                 </thead>
@@ -86,40 +63,47 @@
                             <td>{{ $tipodocumento->id }}</td>
                             <td>{{ $tipodocumento->nombre }}</td>
                             <td>{{ $tipodocumento->abreviado }}</td>
+                            <td>{{ $tipodocumento->created_at->toFormattedDateString()}} - {{ $tipodocumento->updated_at->toFormattedDateString()}}</td>
 
+                            <td>
+                                @if ($tipodocumento->estatus == 1)
+                                    <span class="badge badge-success">Activo </span>
+                                @else
+                                    <span class="badge badge-danger">Inactivo </span>
+                                @endif
+                            </td>
                             <td width="4px">
-                                <div class="btn-group" style="border-color: #ddd">
+                                <div class="btn-group">
                                     <a type="button" class="btn btn-default btn-sm"
                                         style="border-color: rgb(158, 157, 157)">
                                         @if ($tipodocumento->estatus == 1)
                                             <form class="formulario-estatus"
-                                                action="{{ route('admin.tipodocumentos.show', $tipodocumento) }}"
-                                                method="get">
+                                                action="{{ route('admin.tipodocumentos.estatutipodocumento', $tipodocumento) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default btn-sm p-0"><i
-                                                        class="fas fa-user-check text-yellow"></i></button>
+                                                <button type="submit" class="btn btn-default text-success border-0 btn-sm p-0">
+                                                    <i class="fas fa-check-circle"></i>
+                                                </button>
                                             </form>
                                         @else
-                                            <form class="formulario-estatus"
-                                                action="{{ route('admin.tipodocumentos.show', $tipodocumento) }}"
-                                                method="get">
+                                            <form class="formulario-estatus2"
+                                                action="{{ route('admin.tipodocumentos.estatutipodocumento', $tipodocumento) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default text-danger btn-sm p-0"><i
-                                                        class="fas fa-user-times"></i></button>
+                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0">
+                                                    <i class="fas fa-times-circle"></i>
+                                                </button>
                                             </form>
                                         @endif
                                     </a>
-                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157)"
+                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
                                         href=" {{ route('admin.tipodocumentos.edit', $tipodocumento) }} "><i
                                             class="fas fa-edit text-blue"></i></a>
                                     <a type="button" class="btn btn-default btn-sm"
-                                        style="border-color: rgb(158, 157, 157)">
+                                        style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
                                         <form class="formulario-eliminar"
-                                            action="{{ route('admin.tipodocumentos.destroy', $tipodocumento) }}"
-                                            method="POST">
+                                            action="{{ route('admin.tipodocumentos.destroy', $tipodocumento) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-default btn-sm p-0 text-danger"><i
+                                            <button type="submit" class="btn btn-default btn-sm border-0 p-0 text-danger"><i
                                                     class="fas fa-trash"></i></button>
                                         </form>
                                     </a>

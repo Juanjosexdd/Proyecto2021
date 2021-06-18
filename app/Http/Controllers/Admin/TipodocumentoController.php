@@ -67,4 +67,21 @@ class TipodocumentoController extends Controller
 
         return redirect()->route('admin.tipodocumentos.index')->with('success', 'El tipodocumento se eliminó con exito!');
     }
+
+    public function estatutipodocumento(Tipodocumento $tipodocumento)
+    {
+        if($tipodocumento->estatus=="1"){
+
+            $tipodocumento->estatus= '0';
+            $tipodocumento->save();
+            return redirect()->route('admin.tipodocumentos.index')->with('success', 'El documento está inactivo con éxito!');
+
+       }else{
+
+            $tipodocumento->estatus= '1';
+            $tipodocumento->save();
+            return redirect()->route('admin.tipodocumentos.index')->with('success', 'El documento se activó con éxito!');
+
+        }
+    }
 }

@@ -39,4 +39,5 @@ Route::get('estatuciudad/{ciudad}', [CiudadController::class, 'estatuciudad'])->
 Route::get('estatucargo/{cargo}', [CargoController::class, 'estatucargo'])->name('admin.cargos.estatucargo');
 Route::get('estatudepartamento/{departamento}', [DepartamentoController::class, 'estatudepartamento'])->name('admin.departamentos.estatudepartamento');
 Route::get('estatuclacificacion/{clacificacion}', [ClacificacionController::class, 'estatuclacificacion'])->name('admin.clacificacions.estatuclacificacion');
+Route::get('estatutipodocumento/{tipodocumento}', [TipodocumentoController::class, 'estatutipodocumento'])->name('admin.tipodocumentos.estatutipodocumento');
 

@@ -2,47 +2,32 @@
 
 @section('title', 'ENASA | CREAR NUEVO MUNICIPIO')
 
-
-@section('content_header')
-    <h1 class="text-blue">CREAR NUEVO MUNICIPIO</h1>
-@stop
-
 @section('content')
-    <div class="container">
+    @include('sweetalert::alert')
 
-        <div class="card card-custom bg-white border-white border-0 elevation-5">
-            <div class="card-custom-img">
-                <img src=" {{asset('storage/header.png')}} " class="img-fluid" alt="">
-            </div>
-            <div class="card-custom-avatar">
-                
-            </div>
-
-            <div class="card-body" style="overflow-y: auto">
-                {!! Form::open(['route' => 'admin.ciudads.store']) !!}
-
-                @include('admin.ciudads.partials.form')
-                {!! Form::submit('Guardar ciudad', ['class' => 'btn btn-outline-primary btn-block']) !!}
-            {!! Form::close() !!}
-            </div>
-            <div class="card-footer" style="background: inherit; border-color: inherit;">
-
-            </div>
+    <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
+        <div class="card-body">
+            <h3 class="text-blue">Crear un nuevo municipio</h3>
         </div>
-        <!-- Copy until here -->
+    </div>
 
+    <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem" bis_skin_checked="1">
+
+        <div class="card-body" style="overflow-y: auto">
+            {!! Form::open(['route' => 'admin.ciudads.store']) !!}
+
+            @include('admin.ciudads.partials.form')
+            {!! Form::submit('Guardar Municipio', ['class' => 'btn btn-outline-primary btn-block']) !!}
+            {!! Form::close() !!}
+        </div>
     </div>
 @stop
 
 @section('footer')
-<h5 class="text-center"><a href="https://github.com/Juanjosexdd/proyecto2021"  target="_blank">
-    ENASA - UPTP "JJ MONTILLA"</a></h5>
+    <h5 class="text-center"><a href="https://github.com/Juanjosexdd/silosenasa" target="_blank">
+            ENASA - UPTP "JJ MONTILLA"</a></h5>
 @stop
 
 @section('css')
-<link rel="stylesheet" href="{{asset('vendor/cards.css')}}">
+    <link rel="stylesheet" href="{{ asset('vendor/cards.css') }}">
 @stop
-
-
-
-

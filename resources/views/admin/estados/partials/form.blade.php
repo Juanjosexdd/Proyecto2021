@@ -1,20 +1,18 @@
-<a href=" {{route('admin.estados.index')}} " class="float-right h5 text-blue"><i class="fas fa-reply"></i>    Volver</a>
+<a href=" {{route('admin.estados.index')}} " class="float-right btn bg-navy btn-sm px-3 py-2 elevation-4"><i class="fas fa-reply"></i>    Volver</a>
 <p class="h3 text-blue">Estado</p>
 <hr>
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            {!! Form::label('nombre', 'Nombre & ',['class' => 'text-blue ']) !!}       {!! Form::label('slug', 'slug :',['class' => 'text-blue']) !!}
+        {!! Form::label('nombre', 'Nombre &',['class' => 'text-blue']) !!} {!! Form::label('slug', 'slug :',['class' => 'text-blue']) !!} <span class="text-danger">*</span>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-address-card text-blue"></i></span>
+                    <span class="input-group-text"><i class="fas fa-sitemap text-blue"></i></span>
                 </div>
-                {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
+                {!! Form::text('nombre', null, ['class' => 'form-control'  . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) !!}
+                {!! $errors->first('nombre', ' <div class="invalid-feedback text-center"><strong>:message</strong></div>') !!}
                 {!! Form::hidden('slug', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el slug' ,'readonly']) !!}
             </div>
-            @error('nombre')
-                <small class="text-danger mt-0">{{$message}}</small>
-            @enderror
         </div>
     </div>
 </div>

@@ -3,7 +3,6 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-                
                 {!! Form::label('name', 'Nombres & ',['class' => 'text-blue']) !!}       {!! Form::label('slug', 'slug :',['class' => 'text-blue']) !!} <span class="text-danger">*</span>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">

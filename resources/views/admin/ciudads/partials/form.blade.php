@@ -1,14 +1,11 @@
-<a href=" {{route('admin.ciudads.index')}} " class="float-right h5 text-blue"><i class="fas fa-reply"></i>    Volver</a>
+<a href=" {{route('admin.ciudads.index')}} " class="float-right btn bg-navy btn-sm px-3 py-2 elevation-4"><i class="fas fa-reply"></i>    Volver</a>
 <p class="h3 text-blue">Municipio</p>
 <hr>
 <div class="row">
     <div class="col-md-6">
-        <div wire:model('render')>
-            {!! Form::label('estado_id', 'Estado :', ['class' => 'text-blue']) !!}
-            {!! Form::select('estado_id', $estados, null, ['class' => 'form-control']) !!}
-            @error('estado_id')
-                <small class="text-danger">{{$message}}</small>
-            @enderror
+        <div>
+            {!! Form::label('estados_id', 'Estado :', ['class' => 'text-blue']) !!}
+            {!! Form::select('estados_id', $estados, null, ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-6">

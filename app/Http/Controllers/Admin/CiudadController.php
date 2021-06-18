@@ -36,24 +36,22 @@ class CiudadController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'slug' => 'required|unique:ciudads',
-            'estados_id' =>'required'
-        ]);
+        // $request->validate([
+        //     'nombre' => 'required',
+        //     'slug' => 'required|unique:ciudads',
+        //     'estados_id' =>'required'
+        // ]);
 
         $ciudad = Ciudad::create($request->all());
-        if ($request->ciudads) {
-            $ciudad->estado()->attach($request->estados);
-        }
 
-        return redirect()->route('admin.ciudads.edit', $ciudad)->with('info', 'El ciudad se creo con exito...');
+        return redirect()->route('admin.ciudads.edit', $ciudad)->with('success', 'El municipio se creo con exito...');
     }
 
     public function edit(Ciudad $ciudad)
     {
+        $estados = Estado::pluck('nombre','id');
 
-        return view ('admin.ciudads.edit', compact('ciudad'));
+        return view ('admin.ciudads.edit', compact('ciudad','estados'));
         
     }
 
@@ -65,14 +63,14 @@ class CiudadController extends Controller
         ]);
 
         $ciudad->update($request->all());
-        return redirect()->route('admin.ciudads.edit', $ciudad)->with('info', 'El ciudad se actualizó con exito...');
+        return redirect()->route('admin.ciudads.edit', $ciudad)->with('success', 'El municipio se actualizó con exito...');
     }
 
     public function destroy(Ciudad $ciudad)
     {
         $ciudad->delete();
 
-        return redirect()->route('admin.ciudads.index')->with('info', 'El ciudad se eliminó con exito...');
+        return redirect()->route('admin.ciudads.index')->with('info', 'El municipio se eliminó con exito...');
     }
 
     public function estatuciudad(Ciudad $ciudad)

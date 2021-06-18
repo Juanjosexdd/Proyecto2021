@@ -65,8 +65,8 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-navy',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
 
     /*
@@ -337,6 +337,12 @@ return [
                     'text' => 'Usuarios',
                     'route'  => 'admin.users.index',
                     'icon' => 'fas fa-fw fa-users-cog text-blue',
+                    'active' => ['admin/users*'],
+                ],
+                [
+                    'text' => 'Logs',
+                    'route'  => 'admin.users.index',
+                    'icon' => 'fas fa-traffic-light text-blue',
                     'active' => ['admin/users*'],
                 ],
             ],
