@@ -10,6 +10,7 @@ use App\Models\Cargo;
 use App\Models\Departamento;
 use App\Models\Tipodocumento;
 use Spatie\Permission\Models\Role;
+use App\Models\Log\LogSistema;
 
 class UserController extends Controller
 {
@@ -20,6 +21,13 @@ class UserController extends Controller
      */
     public function index()
     {
+        $log = new LogSistema();
+
+        $log->user_id = auth()->user()->id;
+        $log->tx_descripcion = 'El usuario: ' . auth()->user()->name . ' Ha ingresado a ver los usuarios a las: '
+            . date('H:m:i') . ' del día: ' . date('d/m/Y');
+        $log->save();
+
         $users = User::where('estatus' == 1 );
         return view('admin.users.index', compact('users') );
     }
@@ -31,7 +39,12 @@ class UserController extends Controller
      */
     public function create(User $usuarios)
     {
-        return view('admin.users.create', compact('usuarios'));
+        $departamentos = Departamento::pluck('nombre','id');
+        $tipodocumentos = Tipodocumento::pluck('abreviado','id');
+        $cargos = Cargo::pluck('nombre','id');
+        $roles = Role::all();
+
+        return view('admin.users.create', compact('usuarios','departamentos','tipodocumentos','cargos','roles'));
     }
 
     /**

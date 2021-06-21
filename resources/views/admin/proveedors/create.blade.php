@@ -2,49 +2,29 @@
 
 @section('title', 'ENASA | CREAR NUEVO PROVEEDOR')
 
-
-@section('content_header')
-    <h1 class="text-blue">CREAR NUEVO PROVEEDOR</h1>
-@stop
-
 @section('content')
+    @include('sweetalert::alert')
+
     <div class="container">
-
-        <div class="card card-custom bg-white border-white border-0 elevation-5">
-            <div class="card-custom-img"
-                style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);">
-            </div>
-            <div class="card-custom-avatar">
-               <!-- <img class="img-fluid"
-                    src="http://res.cloudinary.com/d3/image/upload/c_pad,g_center,h_200,q_auto:eco,w_200/bootstrap-logo_u3c8dx.jpg"
-                    alt="Avatar" /> -->
-            </div>
-            <div class="card-body" style="overflow-y: auto">
-                {!! Form::open(['route' => 'admin.proveedors.store']) !!}
-
-                    @include('admin.proveedors.partials.form')
-                    {!! Form::submit('Guardar proveedor', ['class' => 'btn btn-outline-primary btn-block']) !!}
-                {!! Form::close() !!}
-
-            </div>
-            <div class="card-footer" style="background: inherit; border-color: inherit;">
-
+        <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
+            <div class="card-body">
+                <h3 class="text-blue">Crear un nuevo proveedor</h3>
             </div>
         </div>
-        <!-- Copy until here -->
-
+    </div>
+    <div class="container">
+        <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem" bis_skin_checked="1">
+            <div class="card-body" style="overflow-y: auto">
+                {!! Form::open(['route' => 'admin.proveedors.store']) !!}
+                @include('admin.proveedors.partials.form')
+                {!! Form::submit('Guardar proveedor', ['class' => 'btn btn-outline-primary btn-block']) !!}
+                {!! Form::close() !!}
+            </div>
+        </div>
     </div>
 @stop
 
 @section('footer')
-<h5 class="text-center"><a href="https://github.com/Juanjosexdd/proyecto2021"  target="_blank">
-    ENASA - UPTP "JJ MONTILLA"</a></h5>
+    <h5 class="text-center"><a href="https://github.com/Juanjosexdd/silosenasa" target="_blank">
+            ENASA - UPTP "JJ MONTILLA"</a></h5>
 @stop
-
-@section('css')
-<link rel="stylesheet" href="{{asset('vendor/cards.css')}}">
-@stop
-
-
-
-

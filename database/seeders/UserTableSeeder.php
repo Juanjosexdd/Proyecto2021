@@ -22,10 +22,11 @@ class UserTableSeeder extends Seeder
             'cargo_id' => '1',
             'cedula' => '20391877',
             'name' => 'Juan Jose',
+            'username' => 'juanjosexd',
             'slug' => 'juan-jose',
             'last_name' => ' Soto Peña',
             'email' => 'juanjosexdd7@gmail.com',
-            'password' => '20391877'
+            'password' => 'juanjosexd'
         ]);
 
         User::create([
@@ -34,6 +35,7 @@ class UserTableSeeder extends Seeder
             'cargo_id' => '1',
             'cedula' => '123456789',
             'name' => 'Admin',
+            'username' => 'admin',
             'slug' => 'admin',
             'last_name' => 'Admin',
             'email' => 'admin@mail.com',
@@ -45,11 +47,50 @@ class UserTableSeeder extends Seeder
             'departamento_id' => '1',
             'cargo_id' => '1',
             'cedula' => '12345678',
-            'name' => 'Usuario',
+            'name' => 'usuario',
+            'username' => 'usuario',
             'slug' => 'usuario',
             'last_name' => 'Usuario',
             'email' => 'usuario@mail.com',
             'password' => 'usuario'
+        ]);
+        User::create([
+            'tipodocumento_id' => '1',
+            'departamento_id' => '1',
+            'cargo_id' => '1',
+            'cedula' => '3456345',
+            'name' => 'Pablo',
+            'username' => 'pablobencomo',
+            'slug' => 'pablo',
+            'last_name' => 'Bencomo',
+            'email' => 'Pablobencomo@mail.com',
+            'password' => 'pablobencomo'
+        ]);
+
+        User::create([
+            'tipodocumento_id' => '1',
+            'departamento_id' => '1',
+            'cargo_id' => '1',
+            'cedula' => '45645645',
+            'name' => 'Betania',
+            'username' => 'Betania',
+            'slug' => 'usuario',
+            'last_name' => 'Paez',
+            'email' => 'Betaniapaez@mail.com',
+            'password' => 'betania'
+        ]);
+
+        User::create([
+            'tipodocumento_id' => '1',
+            'departamento_id' => '1',
+            'cargo_id' => '1',
+            'cedula' => '5463464',
+            'name' => 'Cristian',
+            'username' => 'cristian',
+            'slug' => 'cristian',
+            'last_name' => 'Daza',
+            'email' => 'Cristiandaza@mail.com',
+            'password' => 'cristian'
         ]);
        // User::factory(99)->create();
     }

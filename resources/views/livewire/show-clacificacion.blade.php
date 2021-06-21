@@ -79,7 +79,7 @@
                                 @if ($clacificacion->estatus == 1)
                                     <span class="badge badge-success">Activo</span>
                                 @else
-                                    <span class="badge badge-danger">Inactivo <i class="fad fa-user-times"></i></span>
+                                    <span class="badge badge-danger">Inactivo</span>
                                 @endif
                             </td>
                             <td width="4px">
@@ -90,15 +90,17 @@
                                             <form class="formulario-estatus"
                                                 action="{{ route('admin.clacificacions.estatuclacificacion', $clacificacion) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default border-0 btn-sm p-0"><i
-                                                        class="fas fa-user-check text-success"></i></button>
+                                                <button type="submit" class="btn btn-default text-success border-0 btn-sm p-0">
+                                                    <i class="fas fa-check-circle"></i>
+                                                </button>
                                             </form>
                                         @else
                                             <form class="formulario-estatus2"
                                                 action="{{ route('admin.clacificacions.estatuclacificacion', $clacificacion) }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0"><i
-                                                        class="fas fa-user-times"></i></button>
+                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0">
+                                                    <i class="fas fa-times-circle"></i>
+                                                </button>
                                             </form>
                                         @endif
                                     </a>

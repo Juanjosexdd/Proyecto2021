@@ -85,4 +85,10 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($pass);
     }
+
+    public function logins()
+    {
+        return $this->hasMany('App\Models\Login');
+    }
+
 }

@@ -15,6 +15,7 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('clacificacion_id')->nullable();
             $table->string('nombre');
             $table->string('slug');
             $table->string('descripcion');
@@ -23,6 +24,12 @@ class CreateProductosTable extends Migration
             $table->string('minimo')->nullable();
             $table->string('existencia')->nullable();
             $table->boolean('estatus')->default(1);
+
+            $table->foreign('clacificacion_id')
+                  ->references('id')
+                  ->on('clacificacions')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
             $table->timestamps();
         });
     }

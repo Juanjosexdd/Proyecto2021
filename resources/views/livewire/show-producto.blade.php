@@ -40,9 +40,9 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                         </th>
-                        <th scope="col" role="button" wire:click="order('descripcion')">
-                            Descripción
-                            @if ($sort == 'descripcion')
+                        <th scope="col" role="button" wire:click="order('unidad_medida')">
+                            Unidad medidad
+                            @if ($sort == 'unidad_medida')
                                 @if ($direction == 'asc')
                                     <i class="fas fas fa-sort-amount-down-alt float-right mt-1"></i>
                                 @else
@@ -52,38 +52,87 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                         </th>
+                        <th scope="col" role="button" wire:click="order('minimo')">
+                            Minimo
+                            @if ($sort == 'minimo')
+                                @if ($direction == 'asc')
+                                    <i class="fas fas fa-sort-amount-down-alt float-right mt-1"></i>
+                                @else
+                                    <i class="fas fa-sort-amount-down float-right mt-1"></i>
+                                @endif
+                            @else
+                                <i class="fas fa-sort float-right mt-1"></i>
+                            @endif
+                        </th>
+                        <th scope="col" role="button" wire:click="order('maximo')">
+                            Maximo
+                            @if ($sort == 'maximo')
+                                @if ($direction == 'asc')
+                                    <i class="fas fas fa-sort-amount-down-alt float-right mt-1"></i>
+                                @else
+                                    <i class="fas fa-sort-amount-down float-right mt-1"></i>
+                                @endif
+                            @else
+                                <i class="fas fa-sort float-right mt-1"></i>
+                            @endif
+                        </th>
+                        <th>Estatus</th>
                         <th colspan="3"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($productos as $producto)
                         <tr>
-                            <td>{{$producto->clacificacions[0]->abreviado}}-{{$producto->id}}</td>
+                            <td>{{$producto->clacificacion->abreviado}}{{$producto->id}}</td>
                             <td>{{$producto->nombre}}</td>
-                            <td>{{$producto->descripcion}}</td>
-                            <td width="4px"> 
+                            <td>{{$producto->unidad_medida}}</td>
+                            <td>{{$producto->maximo}}</td>
+                            <td>{{$producto->minimo}}</td>
+                            <td> 
                                 @if ($producto->estatus == 1)
-                                    <form class="formulario-estatus" action="{{route('admin.productos.show', $producto)}}" method="get">
-                                        @csrf
-                                        <button type="submit" class="btn btn-outline-success btn-sm elevation-4"><i class="fas fa-user-check"></i></button>
-                                    </form>
+                                    <span class="badge badge-success">Activo</span>
                                 @else
-                                <form class="formulario-estatus" action="{{route('admin.productos.show', $producto)}}" method="get">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-danger btn-sm elevation-4"><i class="fas fa-user-times"></i></button>
-                                </form>
+                                    <span class="badge badge-danger">Inactivo</span>
                                 @endif
                             </td>
                             <td width="4px">
-                                <a class="btn btn-outline-info btn-sm mr-1 elevation-4" href=" {{route('admin.productos.edit',$producto)}} "><i class="fas fa-edit"></i></a>
-                            </td>
-                            <td width="4px">
-                                <form class="formulario-eliminar" action="{{route('admin.productos.destroy', $producto)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm elevation-4"><i class="fas fa-trash"></i></button>
-                                </form>
-                            </td>
+                                <div class="btn-group">
+                                    <a type="button" class="btn btn-default btn-sm"
+                                        style="border-color: rgb(158, 157, 157)">
+                                        @if ($producto->estatus == 1)
+                                            <form class="formulario-estatus"
+                                                action="{{ route('admin.productos.estatuproducto', $producto) }}" method="get">
+                                                @csrf
+                                                <button type="submit" class="btn btn-default text-success border-0 btn-sm p-0">
+                                                    <i class="fas fa-check-circle"></i>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form class="formulario-estatus2"
+                                                action="{{ route('admin.productos.estatuproducto', $producto) }}" method="get">
+                                                @csrf
+                                                <button type="submit" class="btn btn-default text-danger border-0 btn-sm p-0">
+                                                    <i class="fas fa-times-circle"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </a>
+                                    <a class="btn btn-default btn-sm" style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
+                                        href=" {{ route('admin.productos.edit', $producto) }} "><i
+                                            class="fas fa-edit text-blue"></i></a>
+                                    <a type="button" class="btn btn-default btn-sm"
+                                        style="border-color: rgb(158, 157, 157); border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
+                                        <form class="formulario-eliminar"
+                                            action="{{ route('admin.productos.destroy', $producto) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-default btn-sm border-0 p-0 text-danger"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </form>
+                                    </a>
+                                </div>
+
+                            </td
                         </tr>
                     @endforeach
                 </tbody>

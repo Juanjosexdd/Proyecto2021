@@ -1,4 +1,4 @@
-<a href=" {{route('admin.almacens.index')}} " class="float-right h5 text-blue"><i class="fas fa-reply"></i>    Volver</a>
+<a href=" {{route('admin.almacens.index')}} " class="float-right btn bg-navy btn-sm px-3 py-2 elevation-4"><i class="fas fa-reply"></i>    Volver</a>
 <p class="h3 text-blue">Almacenes</p>
 <hr>
 <div class="row">

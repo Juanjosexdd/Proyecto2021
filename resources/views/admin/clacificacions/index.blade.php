@@ -2,29 +2,17 @@
 
 @section('title', 'ENASA | CLACIFICACIÓN')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
-@stop
 
-@section('content_header')
+@section('content')
+    @include('sweetalert::alert')
 
-    <div class="container m-3">
+    <div class="container">
         <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
             <div class="card-body">
-                <h3 class="text-blue">Lista de clacificación</h3>
+                <h3 class="text-blue">Lista de clacificaciones</h3>
             </div>
         </div>
     </div>
-@stop
-
-@section('footer')
-<h5 class="text-center"><a href="https://github.com/Juanjosexdd/proyecto2021"  target="_blank">
-    ENASA - UPTP "JJ MONTILLA"</a></h5>
-@stop
-
-@section('content')
-
-    @include('sweetalert::alert')
 
     <div class="container">
         @livewire('show-clacificacion')
@@ -32,8 +20,8 @@
 @stop
 
 @section('footer')
-<h5 class="text-center"><a href="https://github.com/Juanjosexdd/proyecto2021"  target="_blank">
-    ENASA - UPTP "JJ MONTILLA"</a></h5>
+    <h5 class="text-center"><a href="https://github.com/Juanjosexdd/silosenasa" target="_blank">
+            ENASA - UPTP "JJ MONTILLA"</a></h5>
 @stop
 
 

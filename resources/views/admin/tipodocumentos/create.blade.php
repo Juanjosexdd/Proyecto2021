@@ -4,24 +4,21 @@
 
 
 @section('content')
-
-    <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
-        <div class="card-body">
-            <h3 class="text-blue">Crear un nuevo tipo de docimento</h3>
+    <div class="container">
+        <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
+            <div class="card-body">
+                <h3 class="text-blue">Crear un nuevo tipo de docimento</h3>
+            </div>
         </div>
     </div>
-
-    <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem" bis_skin_checked="1">
-
-        <div class="card-body" style="overflow-y: auto">
-            {!! Form::open(['route' => 'admin.tipodocumentos.store']) !!}
-
-            @include('admin.tipodocumentos.partials.form')
-            {!! Form::submit('Guardar tipo documento', ['class' => 'btn btn-outline-primary btn-block']) !!}
-            {!! Form::close() !!}
-        </div>
-        <div class="card-footer" style="background: inherit; border-color: inherit;">
-
+    <div class="container">
+        <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem" bis_skin_checked="1">
+            <div class="card-body" style="overflow-y: auto">
+                {!! Form::open(['route' => 'admin.tipodocumentos.store']) !!}
+                @include('admin.tipodocumentos.partials.form')
+                {!! Form::submit('Guardar tipo documento', ['class' => 'btn btn-outline-primary btn-block']) !!}
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @stop

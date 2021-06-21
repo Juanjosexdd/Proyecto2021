@@ -2,37 +2,33 @@
 
 @section('title', 'ENASA | CREAR NUEVO USUARIO')
 
-
-@section('content_header')
-    <h1 class="text-blue">CREAR NUEVO USUARIO</h1>
-@stop
-
 @section('content')
+    @include('sweetalert::alert')
     <div class="container">
-
-        <div class="card card-custom bg-white border-white border-0 elevation-5">
-            <div class="card-custom-img">
-                <img src=" {{asset('storage/header.png')}} " class="img-fluid" alt="">
-            </div>
-            <div class="card-custom-avatar">
-
-            </div>
-            <div class="card-body" style="overflow-y: auto">
-                @livewire('create-user')
-
-            </div>
-            <div class="card-footer" style="background: inherit; border-color: inherit;">
-
+        <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
+            <div class="card-body">
+                <h3 class="text-blue">Registrar nuevo usuario</h3>
             </div>
         </div>
-        <!-- Copy until here -->
+    </div>
+    <div class="container">
+        <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
+            <div class="card-body" style="overflow-y: auto">
+                <a href=" {{ route('admin.users.index') }} " class="float-right btn bg-navy btn-sm px-3 py-2 elevation-4"><i
+                        class="fas fa-reply"></i> Volver </a>
+                {!! Form::open(['route' => 'admin.users.store', 'autocomplete' => 'off', 'files' => true]) !!}
+                @include('admin.users.partials.form')
+                {!! Form::submit('Guardar usuario', ['class' => 'btn btn-outline-primary btn-block']) !!}
 
+                {!! Form::close() !!}
+            </div>
+        </div>
     </div>
 @stop
 
 @section('footer')
-<h5 class="text-center"><a href="https://github.com/Juanjosexdd/proyecto2021"  target="_blank">
-    ENASA - UPTP "JJ MONTILLA"</a></h5>
+    <h5 class="text-center"><a href="https://github.com/Juanjosexdd/silosenasa" target="_blank">
+            ENASA - UPTP "JJ MONTILLA"</a></h5>
 @stop
 
 
@@ -85,7 +81,3 @@
 
     </style>
 @stop
-
-
-
-

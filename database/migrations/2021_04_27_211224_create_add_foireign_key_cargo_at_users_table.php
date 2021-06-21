@@ -25,6 +25,7 @@ class CreateAddFoireignKeyCargoAtUsersTable extends Migration
             $table->string('slug')->after('name');
             $table->string("cedula")->unique()->after('cargo_id')->nullable();
             $table->string("last_name")->after('name')->nullable();
+            $table->string("username")->after('name')->nullable();
             $table->string("address")->after('last_name')->nullable();
             $table->string("phone")->after('address')->nullable();
             $table->string("phone2")->after('phone')->nullable();

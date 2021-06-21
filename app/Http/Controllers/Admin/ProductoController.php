@@ -46,6 +46,9 @@ class ProductoController extends Controller
         ]);
 
         $producto = Producto::create($request->all());
+        //$producto->clacificacions()->attach($request->get('clacificacions','producto'));
+        // $producto->clacificaciones()->sync($request->get('clacificaciones','producto'));
+
 
         return redirect()->route('admin.productos.edit', $producto)->with('success', ' ¡Felicidades el producto se creo con éxito!');
     }
@@ -79,7 +82,9 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('admin.productos.edit', compact('producto'));
+        $clacificaciones = Clacificacion::pluck('abreviado','id');
+
+        return view('admin.productos.edit', compact('producto','clacificaciones'));
     }
 
     /**
@@ -112,5 +117,22 @@ class ProductoController extends Controller
         $producto->delete();
 
         return redirect()->route('admin.productos.index')->with('success', 'El producto se eliminó con exito!');
+    }
+
+    public function estatuproducto(Producto $producto)
+    {
+        if($producto->estatus=="1"){
+
+            $producto->estatus= '0';
+            $producto->save();
+            return redirect()->route('admin.productos.index')->with('success', 'El producto está inactivo con éxito!');
+
+       }else{
+
+            $producto->estatus= '1';
+            $producto->save();
+            return redirect()->route('admin.productos.index')->with('success', 'El producto se activó con éxito!');
+
+        }
     }
 }

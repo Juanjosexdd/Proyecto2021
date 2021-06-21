@@ -3,7 +3,8 @@
 @section('title', 'ENASA | INFORMACION PERSONAL')
 
 @section('content')
-    <div class="container">
+
+    <div class="container ">
         <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
             <div class="card-body">
                 <h3 class="text-blue">Datos de {{ $user->name }} {{ $user->last_name }}</h3>
@@ -103,10 +104,7 @@
                         <i class="icon-copy font-30 text-light-purple fi-female"></i>
                     @endif
                 </div> --}}
-                    <div class="col-sm-3 invoice-col">
-                        <strong class="font-14 text-blue">Actualizado</strong><br>
-                        <span class="text-muted">{{ $user->updated_at }}</span>
-                    </div>
+                    
                     <div class="col-sm-3 invoice-col">
                         <strong class="font-14 text-blue">Telefono</strong><br>
                         <span class="text-muted">{{ $user->phone }}</span>

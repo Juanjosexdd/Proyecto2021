@@ -71,12 +71,12 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td> <img class="img-size-32  img-circle image elevation-2"
+                            <td><a href=" {{ route('admin.users.show', $user) }} "> <img class="img-size-32  img-circle image elevation-2"
                                     src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
-                                {{ $user->name }} {{ $user->last_name }}</td>
-                            <td>{{ $user->tipodocumento->abreviado }}-{{ $user->cedula }} </td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ Str::limit( $user->cargo->nombre, 20) }}</td>
+                                {{ $user->name }} {{ $user->last_name }}</a></td>
+                            <td><a href=" {{ route('admin.users.show', $user) }} ">{{ $user->tipodocumento->abreviado }}-{{ $user->cedula }} </a></td>
+                            <td><a href=" {{ route('admin.users.show', $user) }} ">{{ $user->email }}</a></td>
+                            <td><a href=" {{ route('admin.users.show', $user) }} ">{{ Str::limit( $user->cargo->nombre, 20) }}</a></td>
                             <td>
                                 @if ($user->estatus == 1)
                                     <span class="badge badge-success">Activo</span>

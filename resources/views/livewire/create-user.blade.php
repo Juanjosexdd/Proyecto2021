@@ -1,5 +1,4 @@
 <div>
-    <a href=" {{route('admin.users.index')}} " class="float-right h5 text-blue"><i class="fas fa-reply"></i>  Volver  </a>
 
     {!! Form::open(['route' => 'admin.users.store', 'autocomplete' => 'off', 'files' => true]) !!}
         @include('admin.users.partials.form')

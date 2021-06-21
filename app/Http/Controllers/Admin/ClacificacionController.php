@@ -38,6 +38,7 @@ class ClacificacionController extends Controller
     {
         $request->validate([
             'nombre' => 'required',
+            'abreviado' => 'required',
             'descripcion' => 'required',
             'slug' => 'required|unique:clacificacions'
         ]);

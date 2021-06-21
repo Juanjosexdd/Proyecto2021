@@ -17,10 +17,11 @@ class Producto extends Model
 
     public function almacenes()
     {
-        return $this->belongsToMany(Almacen::class)->withTimestamps();
+        return $this->belongsToMany(Almacen::class);
     }
-    public function clacificacions()
+
+    public function clacificacion()
     {
-        return $this->belongsToMany(Clacificacion::class)->withTimestamps();
+        return $this->belongsTo(Clacificacion::class);
     }
 }

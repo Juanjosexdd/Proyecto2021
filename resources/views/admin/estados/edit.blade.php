@@ -5,25 +5,23 @@
 
 @section('content')
     @include('sweetalert::alert')
-
+<div class="container">
     <div class="card elevation-4 col-md-12 col-sm-12" style="border-radius: 0.95rem">
         <div class="card-body">
             <h3 class="text-blue">Editar estado {{ $estado->nombre }} </h3>
         </div>
     </div>
-
+</div>
+<div class="container">
     <div class="card elevation-5 col-md-12 col-sm-12 pt-3" style="border-radius: 0.95rem" bis_skin_checked="1">
-
         <div class="card-body" style="overflow-y: auto">
             {!! Form::model($estado, ['route' => ['admin.estados.update', $estado], 'method' => 'PUT', 'autocomplete' => 'off']) !!}
             @include('admin.estados.partials.form')
             {!! Form::submit('Guardar estado', ['class' => 'btn btn-outline-primary btn-block']) !!}
             {!! Form::close() !!}
         </div>
-        <div class="card-footer" style="background: inherit; border-color: inherit;">
-
-        </div>
     </div>
+</div>
 @stop
 
 @section('footer')

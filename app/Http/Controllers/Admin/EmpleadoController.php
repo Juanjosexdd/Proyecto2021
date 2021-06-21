@@ -43,10 +43,9 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmpleadoRequest $request)
+    public function store(Request $request)
     {
         $empleado = Empleado::create($request->all());
-        
         
         return redirect()->route('admin.empleados.index')->with('success', 'El trabajador se registro con exito!');
     }
@@ -59,19 +58,12 @@ class EmpleadoController extends Controller
      */
     public function show(Empleado $empleado)
     {
-        if($empleado->estatus=="1"){
+        $departamentos = Departamento::pluck('nombre','id');
+        $tipodocumentos = Tipodocumento::pluck('abreviado','id');
+        $cargos = Cargo::pluck('nombre','id');
 
-            $empleado->estatus= '0';
-            $empleado->save();
-            return redirect()->route('admin.empleados.index')->with('success', 'El usuario està inactivo con exito.!');
+         return view('admin.empleados.show', compact('departamentos','tipodocumentos','cargos','empleado'));
 
-       }else{
-
-            $empleado->estatus= '1';
-            $empleado->save();
-            return redirect()->route('admin.empleados.index')->with('success', 'El usuario se activó con exito!');
-
-        }
     }
 
     /**

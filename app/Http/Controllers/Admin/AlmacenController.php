@@ -112,5 +112,22 @@ class AlmacenController extends Controller
 
         return redirect()->route('admin.almacens.index')->with('success', 'El almacen se eliminó con exito...');
     }
+
+    public function estatualmacen(Almacen $almacen)
+    {
+        if($almacen->estatus=="1"){
+
+            $almacen->estatus= '0';
+            $almacen->save();
+            return redirect()->route('admin.almacens.index')->with('success', 'El almacen se inactivo con éxito!');
+
+       }else{
+
+            $almacen->estatus= '1';
+            $almacen->save();
+            return redirect()->route('admin.almacens.index')->with('success', 'El almacen se activó con éxito!');
+
+        }
+    }
     
 }

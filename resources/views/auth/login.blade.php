@@ -1,68 +1,110 @@
 
-<x-guest-layout>
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Basic Page Info -->
+	<meta charset="utf-8">
+	<title>ENASA</title>
 
-    @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ session('status') }}
-        </div>
-    @endif
+	<!-- Site favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('vendores/images/logo.png')}}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('vendores/images/logo.png')}}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('vendores/images/logo.png')}}">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-        <div class="font-sans">
-            <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
-                <div class="relative sm:max-w-sm w-full">
-                    <div class="card bg-blue-900 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6">
-                    </div>
-                    <div class="card bg-red-700 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6">
-                    </div>
-                    <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
-                        <label for="" class="block text-sm text-gray-700 text-center font-semibold">
-                            ENASA
-                        </label>
-                        <form method="#" action="#" class="mt-10">
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="{{asset('vendores/styles/core.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('vendores/styles/icon-font.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('vendores/styles/style.css')}}">
 
-                            <div>
-                                <input type="email" id="email" name="email" :value="old('email')" required autofocus
-                                    placeholder="  Email"
-                                    class="mt-1 block w-full border border-blue-500 bg-gray-100 h-11 rounded-md shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
-                            </div>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-                            <div class="mt-7">
-                                <input type="password" placeholder="  Contraseña"
-                                    class="mt-1 block w-full border border-blue-500 bg-gray-100 h-11 rounded-md shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                                    id="password" name="password" required autocomplete="current-password">
-                            </div>
-
-                            <div class="mt-7 flex">
-                                <label for="remember_me" class="inline-flex items-center w-full cursor-pointer">
-                                    <input id="remember_me" type="checkbox"
-                                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                        name="remember">
-                                    <span class="ml-2 text-sm text-gray-600">
-                                        Recordarme
-                                    </span>
-                                </label>
-
-                                <div class="w-full text-right">
-                                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="#">
-                                        ¿Olvido su contraseña?
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="mt-7">
-                                <button
-                                    class="bg-blue-800 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
-                                    Iniciar Sesión
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </form>
-</x-guest-layout>
+		gtag('config', 'UA-119386393-1');
+	</script>
+</head>
+<body class="login-page">
+    <div class="pre-loader">
+		<div class="pre-loader-box">
+			<div class="loader-logo"><img src="{{asset('vendores/images/logo.png')}}" alt="" width="250"></div>
+			<div class='loader-progress' id="progress_div">
+				<div class='bar' id='bar1'></div>
+			</div>
+			<div class='percent' id='percent1'>0%</div>
+			<div class="loading-text">
+				Cargando...
+			</div>
+		</div>
+	</div>
+	<div class="login-header box-shadow">
+		<div class="container-fluid d-flex justify-content-between align-items-center">
+			<div class="brand-logo">
+				<a href="{{ route('login') }}">
+					<img src="{{asset('vendores/images/logo.png')}}" width="70" alt="">
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6 col-lg-7">
+					<img src="vendores/images/login-page-img.png" alt="">
+				</div>
+				<div class="col-md-6 col-lg-5">
+					<div class="login-box bg-white box-shadow border-radius-10">
+						<div class="login-title">
+							<h2 class="text-center text-primary">Iniciar Sesión</h2>
+						</div>
+						<form  method="POST" action="{{ route('login') }}">
+                            @csrf
+							<div class="input-group custom">
+								<input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Usuario">
+								<div class="input-group-append custom">
+									<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
+								</div>
+							</div>
+							<div class="input-group custom">
+								<input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="**********">
+								<div class="input-group-append custom">
+									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+								</div>
+							</div>
+							<div class="row pb-30">
+								<div class="col-6">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="customCheck1">
+										<label class="custom-control-label" for="customCheck1">Recordarme</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="input-group mb-0">
+										
+										<input class="btn btn-primary btn-lg btn-block" type="submit" value="Iniciar Sesión">
+										
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- js -->
+	<script src="{{asset('vendores/scripts/core.js')}}"></script>
+	<script src="{{asset('vendores/scripts/script.min.js')}}"></script>
+	<script src="{{asset('vendores/scripts/process.js')}}"></script>
+	<script src="{{asset('vendores/scripts/layout-settings.js')}}"></script>
+</body>
+</html>
